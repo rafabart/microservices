@@ -4,3 +4,11 @@ server:
 spring:
   application:
     name: hr-payroll
+
+hr-worker:
+  ribbon:
+    listOfServers: localhost:8001,localhost:8003
+
+#Usando com o RestTemplate
+#hr-worker:
+#  host: http://localhost:8001

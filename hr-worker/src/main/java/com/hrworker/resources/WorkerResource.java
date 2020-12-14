@@ -3,6 +3,7 @@ package com.hrworker.resources;
 import com.hrworker.entities.Worker;
 import com.hrworker.repositories.WorkerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,8 @@ public class WorkerResource {
 
     private final WorkerRepository workerRepository;
 
+    private final Environment environment;
+
 
     @GetMapping
     public ResponseEntity<List<Worker>> findAll() {
@@ -27,6 +30,7 @@ public class WorkerResource {
 
     @GetMapping("/{id}")
     public ResponseEntity<Worker> findById(@PathVariable final Long id) {
+        System.out.printf("PORT: " + environment.getProperty("local.server.port"));
         return ResponseEntity.ok(workerRepository.findById(id).get());
     }
 }
