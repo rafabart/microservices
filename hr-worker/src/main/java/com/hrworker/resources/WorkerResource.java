@@ -1,5 +1,6 @@
 package com.hrworker.resources;
 
+
 import com.hrworker.entities.Worker;
 import com.hrworker.repositories.WorkerRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,10 @@ public class WorkerResource {
 
     @GetMapping("/{id}")
     public ResponseEntity<Worker> findById(@PathVariable final Long id) {
-        System.out.printf("PORT: " + environment.getProperty("local.server.port"));
+
+
+        System.out.println("PORT: " + environment.getProperty("local.server.port"));
+        System.out.println("CONFIG: " + environment.getProperty("test.config"));
         return ResponseEntity.ok(workerRepository.findById(id).get());
     }
 }
