@@ -4,6 +4,8 @@ package com.hrworker.resources;
 import com.hrworker.entities.Worker;
 import com.hrworker.repositories.WorkerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RefreshScope
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/workers")
@@ -21,6 +24,9 @@ public class WorkerResource {
     private final WorkerRepository workerRepository;
 
     private final Environment environment;
+
+    @Value("${test.config}")
+    private String CONFIG;
 
 
     @GetMapping
@@ -34,7 +40,7 @@ public class WorkerResource {
 
 
         System.out.println("PORT: " + environment.getProperty("local.server.port"));
-        System.out.println("CONFIG: " + environment.getProperty("test.config"));
+        System.out.println("CONFIG: " + CONFIG);
         return ResponseEntity.ok(workerRepository.findById(id).get());
     }
 }

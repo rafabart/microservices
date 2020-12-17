@@ -2,9 +2,15 @@ spring:
   application:
     name: hr-worker
 
-  profile:
-    active: test
+#  profile:
+#    active: test
 
   cloud:
     config:
       uri: http://localhost:8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
