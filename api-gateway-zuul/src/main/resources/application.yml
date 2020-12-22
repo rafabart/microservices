@@ -25,6 +25,10 @@ ribbon:
 
 zuul:
   routes:
+    user:
+#      service-id é o spring.application.name do yml de cada api. Devem ser iguais.
+      service-id: user
+      path: /user/**
     worker:
       service-id: hr-worker
       path: /hr-worker/**

@@ -1,6 +1,7 @@
 package com.user.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +22,7 @@ public class User implements Serializable {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
