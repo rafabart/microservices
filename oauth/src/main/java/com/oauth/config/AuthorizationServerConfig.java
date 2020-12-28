@@ -1,6 +1,7 @@
 package com.oauth.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @RequiredArgsConstructor
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
+    @Value("${oauth.client.name}")
+    private String clientName;
+
+    @Value("${oauth.client.secret}")
+    private String clientSecret;
 
     private final JwtTokenStore tokenStore;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -34,8 +41,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
                 .inMemory()
-                .withClient("myappname123")
-                .secret(passwordEncoder.encode("myappsecret123"))
+                .withClient(clientName)
+                .secret(passwordEncoder.encode(clientSecret))
                 .scopes("read", "write")
                 .authorizedGrantTypes("password")
                 .accessTokenValiditySeconds(86400);
