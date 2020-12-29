@@ -10,5 +10,5 @@ Exemplo: ```http://localhost:8888/hr-worker/prod```
 Busca e exibe as configurações da api hr-worker com profile de produção.
 
 
-GET:```ttp://localhost:8888/configs/default```  
+GET:```http://localhost:8888/configs/default```  
 Busca e exibe as configurações do proprio config-server no profile default.
