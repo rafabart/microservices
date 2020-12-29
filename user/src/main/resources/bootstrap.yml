@@ -1,6 +1,6 @@
 spring:
   application:
-    name: hr-worker
+    name: user
 
   profiles:
     active: test
