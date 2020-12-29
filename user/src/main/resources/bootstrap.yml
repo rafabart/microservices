@@ -3,11 +3,11 @@ spring:
     name: user
 
   profiles:
-    active: test
+    active: ${PROFILE:test}
 
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
 
 management:
   endpoints:
