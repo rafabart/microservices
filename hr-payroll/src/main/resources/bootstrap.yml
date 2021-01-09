@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: hr-payroll
+
+  profiles:
+    active: ${PROFILE:test}
+
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
