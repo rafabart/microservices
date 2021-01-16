@@ -30,4 +30,25 @@ Listar todos funcionários:
 GET: http://localhost:8765/hr-worker/workers
 
 Calcular pagamento por funcionário(1) e dia (20):  
-GET: http://localhost:8765/hr-payroll/payments/1/days/20
+GET: http://localhost:8765/hr-payroll/payments/1/days/20  
+
+ </br> 
+
+ # Ambiente de Dev com somente bancos de dados em containers docker
+
+Criar rede docker para sistema:  
+```docker network create hr-net```  
+
+Postgresql:  
+```docker pull postgres:12-alpine```
+
+```docker run -p 5432:5432 --name hr-worker-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_hr_worker postgres:12-alpine```
+
+```docker run -p 5432:5432 --name hr-user-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_hr_user postgres:12-alpine```
+
+</br> 
+
+# Ambiente de Prod com tudo em containers docker
+
+Criar rede docker para sistema:  
+```docker network create hr-net```  
